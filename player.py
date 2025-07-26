@@ -245,6 +245,8 @@ class Player(pygame.sprite.Sprite):
             pickup = pickup_hit[0]
             if pickup.type == "health":
                 self.get_health(snipets.health_pickup_strength)
+            if pickup.type == "shield":
+                self.shield_timer = snipets.shield_pickup_duration
 
             if pickup.type == "weapon":
                 if pickup.weapon == self.weapon:

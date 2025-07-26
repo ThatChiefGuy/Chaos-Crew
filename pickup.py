@@ -10,6 +10,10 @@ class Pickup(pygame.sprite.Sprite):
         self.image = pygame.Surface(size)
         self.image = pygame.image.load("Assets/wooden_box.png")
         self.type = random.choice(snipets.pickup_types)
+        self.type = "shield"
+        if self.type == "shield":
+            shield = pygame.transform.scale(pygame.image.load("Assets/shield.png"), (25, 25))
+            self.image.blit(shield, (self.image.get_width() / 2 - shield.get_width() / 2, self.image.get_height() / 2 - shield.get_height() / 2))
         if self.type == "weapon":
             self.weapon = random.choice(snipets.crates)
             self.image.blit(snipets.weapons[self.weapon]["image"],(self.image.get_width() / 2 - snipets.weapons[self.weapon]["image"].get_width() / 2, self.image.get_height() / 2 - snipets.weapons[self.weapon]["image"].get_height() / 2))
