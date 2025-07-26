@@ -22,7 +22,7 @@ class Player(pygame.sprite.Sprite):
         self.can_shoot = True
         self.health = snipets.player_health
         self.max_health = snipets.player_health
-        self.weapon = "cannon"
+        self.weapon = "gun"
         self.shield_on = False
         self.shield_timer = snipets.shield_timer
         self.shield_image = pygame.image.load("Assets/shield.png")
@@ -200,9 +200,9 @@ class Player(pygame.sprite.Sprite):
                 self.get_damage(snipets.weapons[weapon[0].name]["damage"])
                 if type(weapon[0]) == weapons.CannonBall:
                     if weapon[0].facing == "right" and not self.shield_on:
-                        self.velocity_x = 30
+                        self.velocity_x = 27
                     if weapon[0].facing == "left" and not self.shield_on:
-                        self.velocity_x = -30
+                        self.velocity_x = -27
                 weapon[0].kill()
             if type(weapon[0]) == weapons.Mine and not weapon[0].shot_by == self:
                 if not weapon[0].exploding:

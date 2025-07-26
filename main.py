@@ -8,8 +8,8 @@ import spritesheet
 pygame.init()
 pygame.mixer.init()
 window = pygame.display.set_mode((snipets.screen_size_x, snipets.screen_size_y))
-player1 = player.Player((32,  32) , (400, 100), snipets.player_group, [pygame.K_w, pygame.K_a, pygame.K_s, pygame.K_d, pygame.K_SPACE, pygame.K_e])
-player2 = player.Player((20, 40), (400, 100), snipets.player_group, [pygame.K_UP, pygame.K_LEFT, pygame.K_DOWN, pygame.K_RIGHT, pygame.K_KP0, pygame.K_KP1])
+player1 = player.Player((32,  32) , (200, 200), snipets.player_group, [pygame.K_w, pygame.K_a, pygame.K_s, pygame.K_d, pygame.K_SPACE, pygame.K_e])
+player2 = player.Player((20, 40), (600, 200), snipets.player_group, [pygame.K_UP, pygame.K_LEFT, pygame.K_DOWN, pygame.K_RIGHT, pygame.K_KP0, pygame.K_KP1])
 heart_sprite_sheet = pygame.image.load("Assets/heartshealth.png")
 heart_images = []
 heart_position_y = 7
@@ -45,8 +45,26 @@ def on_restart():
     player2.health = snipets.player_health
     player1.weapon = None
     player2.weapon = None
-    player1.rect.center = 400, 400
-    player2.rect.center = 600, 400
+    valid_position = False
+    while not valid_position:
+        position = random.randint(0, snipets.screen_size_x), 0
+        for platform in snipets.platform_group:
+            if position[0] > platform.rect.left and position[0] < platform.rect.right:
+                valid_position = True
+                break
+            else:
+                valid_position = False
+    player1.rect.center = position
+    valid_position = False
+    while not valid_position:
+        position = random.randint(0, snipets.screen_size_x), 0
+        for platform in snipets.platform_group:
+            if position[0] > platform.rect.left and position[0] < platform.rect.right:
+                valid_position = True
+                break
+            else:
+                valid_position = False
+    player2.rect.center = position
     player1.speed_multiplier = 1
     player2.speed_multiplier = 1
     for sprite in snipets.weapon_group:

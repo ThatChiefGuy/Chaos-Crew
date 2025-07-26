@@ -16,7 +16,7 @@ player_jump_strength = 20
 fps = 60
 tile_size_x = 32
 tile_size_y = 24
-bullet_speed = 20
+bullet_speed = 25
 enemy_speed = 5
 pickup_group = pygame.sprite.Group()
 pickup_spawn_time = 150
@@ -88,7 +88,7 @@ weapons = {"gun":
             "cannon":
                     {"damage": 90,
                      "ammo": 3,
-                     "cooldown": 50,
+                     "cooldown": 100,
                      "image": pygame.image.load("Assets/cannon2.png")},
            "mine":
                {"damage": 50,
